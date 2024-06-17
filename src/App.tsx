@@ -1,7 +1,4 @@
-import Task from "./ui/Task";
 import TaskContextProvider from "./ui/TaskContextProvider";
-import { useContext } from "react";
-import { taskContext } from "./ui/TaskContextProvider";
 import TasksDisplayer from "./ui/TasksDisplayer";
 function App() {
 	return (
