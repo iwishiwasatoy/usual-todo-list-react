@@ -1,3 +1,6 @@
-export type Todo = {
-	id: string;
+export type Task = {
+	id: number;
+	title: string;
+	description: string;
+	isDone?: boolean;
 };
