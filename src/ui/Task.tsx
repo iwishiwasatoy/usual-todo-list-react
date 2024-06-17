@@ -12,8 +12,13 @@ export default function Task({
 	const { setTasks, tasks } = useContext(taskContext)!;
 
 	function removeTask(id: number) {
-    
-  }
+		const nTasks = [
+			...tasks.filter((tsk) => {
+				return tsk.id !== id;
+			}),
+		];
+		setTasks(nTasks);
+	}
 
 	return (
 		<div
