@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import type { Task as TaskType } from "../types";
+import { taskContext } from "./TaskContextProvider";
 
 export default function Task({
 	id,
@@ -6,9 +8,12 @@ export default function Task({
 	isDone = false,
 	description,
 }: TaskType) {
+	// biome-ignore lint/style/noNonNullAssertion: <explanation>
+	const { setTasks, tasks } = useContext(taskContext)!;
 
-  
-
+	function removeTask(id: number) {
+    
+  }
 
 	return (
 		<div
@@ -24,7 +29,7 @@ export default function Task({
 			<h1 className="flex-grow">{title}</h1>
 			<div>
 				{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-				<button>🗑️</button>
+				<button onClick={() => removeTask(id)}>🗑️</button>
 				{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 				<button>✏️</button>
 			</div>
