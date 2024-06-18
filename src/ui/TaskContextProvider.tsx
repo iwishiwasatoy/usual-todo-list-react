@@ -6,7 +6,7 @@ import {
 	useState,
 } from "react";
 import type { Task } from "../types";
-import { lisOfTasks } from "../utils/listOfTasks";
+// import { lisOfTasks } from "../utils/listOfTasks";
 
 type TasksContextType = {
 	tasks: Task[];
@@ -17,18 +17,22 @@ export const taskContext = createContext<TasksContextType | null>(null);
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export default function TaskContextProvider({ children }: { children: any }) {
-	const [tasks, setTasks] = useState<Task[]>([]);
-	//let localTasks: Task[];
-	useEffect(() => {
-		localStorage.setItem("localTasks", JSON.stringify(tasks));
-	}, [tasks]);
+	// biome-ignore lint/style/noNonNullAssertion: <explanation>
+	const l: Task[] = JSON.parse(localStorage.getItem("lTasks") as string)!;
+	const [tasks, setTasks] = useState<Task[]>(l);
 
 	useEffect(() => {
-		const tasks = JSON.parse(localStorage.getItem("localTasks") as string);
-		if (tasks) {
-			setTasks(tasks);
+		const lTasks = JSON.parse(localStorage.getItem("lTasks"));
+		console.log(lTasks);
+		if (lTasks) {
+			setTasks([...lTasks]);
 		}
 	}, []);
+
+	useEffect(() => {
+		localStorage.setItem("lTasks", JSON.stringify(tasks));
+	}, [tasks]);
+
 	return (
 		<taskContext.Provider value={{ tasks, setTasks }}>
 			{children}
