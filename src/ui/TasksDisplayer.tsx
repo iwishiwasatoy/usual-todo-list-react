@@ -1,4 +1,4 @@
-import { useContext, useState, useId } from "react";
+import { useContext, useState } from "react";
 import { taskContext } from "./TaskContextProvider";
 import Task from "./Task";
 
@@ -23,7 +23,9 @@ export default function TasksDisplayer() {
 					value={inputVal}
 					onChange={(e) => setInputval(() => e.target.value)}
 				/>
-				<button onClick={() => addTask(inputVal)}>Add task</button>
+				<button type="button" onClick={() => addTask(inputVal)}>
+					Add task
+				</button>
 				<h1>{inputVal}</h1>
 			</div>
 			{tasks.map(({ id, description, title, isDone }) => {

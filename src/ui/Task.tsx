@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import type { Task as TaskType } from "../types";
 import { taskContext } from "./TaskContextProvider";
 
@@ -10,7 +10,6 @@ export default function Task({
 }: TaskType) {
 	// biome-ignore lint/style/noNonNullAssertion: <explanation>
 	const { setTasks, tasks } = useContext(taskContext)!;
-
 	function removeTask(id: number) {
 		const nTasks = [
 			...tasks.filter((tsk) => {
