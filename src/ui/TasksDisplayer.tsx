@@ -15,6 +15,7 @@ export default function TasksDisplayer() {
 		}
 		setTasks((oldTasks) => [...oldTasks, { id: nId, title: tsk }]);
 	}
+	console.log(tasks);
 	return (
 		<div>
 			<div>
@@ -28,13 +29,13 @@ export default function TasksDisplayer() {
 				</button>
 				<h1>{inputVal}</h1>
 			</div>
-			{tasks.map(({ id, description, title, isDone }) => {
+			{tasks.map(({ id, title, description, isDone }) => {
 				return (
 					<Task
 						key={id}
 						id={id}
-						description={description}
 						title={title}
+						description={description}
 						isDone={isDone}
 					/>
 				);

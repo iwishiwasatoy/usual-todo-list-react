@@ -17,14 +17,13 @@ export const taskContext = createContext<TasksContextType | null>(null);
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export default function TaskContextProvider({ children }: { children: any }) {
-	// biome-ignore lint/style/noNonNullAssertion: <explanation>
-	const lTask: Task[] = JSON.parse(localStorage.getItem("lTasks") as string)!;
+	const lTask: Task[] =
+		JSON.parse(localStorage.getItem("lTasks") as string) ?? [];
 
 	const [tasks, setTasks] = useState<Task[]>(lTask);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
-		//const lTasks = JSON.parse(localStorage.getItem("lTasks"));
 		if (lTask) {
 			setTasks([...lTask]);
 		}
